@@ -96,18 +96,23 @@ function updateView() {
         const offset = (idx - state.col) * 100;
         sec.style.transform = `translateX(${offset}%) scale(${idx === state.col ? 1 : 0.9})`;
         sec.style.opacity = idx === state.col ? 1 : 0.3;
-        
+
+        // Update title if active
         if (idx === state.col) {
             sectionTitle.textContent = sec.dataset.title;
-            // Update Active Card in this section
-            const cards = sec.querySelectorAll('.card');
-            cards.forEach((card, rIdx) => {
-                card.className = 'card'; // Reset
-                if (rIdx === state.rows[state.col]) card.classList.add('active');
-                else if (rIdx < state.rows[state.col]) card.classList.add('prev');
-                else card.classList.add('next');
-            });
         }
+        
+        // Update Active Card in this section (and ensure others remain correct)
+        const cards = sec.querySelectorAll('.card');
+        cards.forEach((card, rIdx) => {
+            // Remove state classes safely
+            card.classList.remove('active', 'prev', 'next');
+            
+            // Apply correct state based on current row index for this column
+            if (rIdx === state.rows[idx]) card.classList.add('active');
+            else if (rIdx < state.rows[idx]) card.classList.add('prev');
+            else card.classList.add('next');
+        });
     });
 
     // 2. Update Dots
