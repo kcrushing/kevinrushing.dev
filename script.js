@@ -63,8 +63,8 @@ animateCanvas();
 // --- SWIPE LOGIC ---
 
 const state = {
-    col: 0, // Current Section (Horizontal)
-    rows: [0, 0, 0] // Current Card index for each section (Vertical)
+    col: 0, 
+    rows: [] // Will be populated dynamically
 };
 
 const sections = document.querySelectorAll('.section');
@@ -73,8 +73,11 @@ const navDotsContainer = document.getElementById('nav-dots');
 
 // Initialize
 sections.forEach((sec, colIndex) => {
-    // Position sections horizontally
-    sec.style.left = `${colIndex * 100}%`;
+    // Initialize row state for this section
+    state.rows.push(0);
+
+    // Position sections horizontally (hidden by default via CSS)
+    sec.style.transform = `translateX(${colIndex * 100}%)`;
     
     // Setup cards inside
     const cards = sec.querySelectorAll('.card');
@@ -94,21 +97,22 @@ function updateView() {
     // 1. Move Sections (Horizontal)
     sections.forEach((sec, idx) => {
         const offset = (idx - state.col) * 100;
-        sec.style.transform = `translateX(${offset}%) scale(${idx === state.col ? 1 : 0.9})`;
-        sec.style.opacity = idx === state.col ? 1 : 0.3;
-
-        // Update title if active
+        
         if (idx === state.col) {
+            // Active Section
+            sec.classList.add('active');
+            sec.style.transform = `translateX(0) scale(1)`;
             sectionTitle.textContent = sec.dataset.title;
+        } else {
+            // Inactive Section
+            sec.classList.remove('active');
+            sec.style.transform = `translateX(${offset}%) scale(0.9)`;
         }
         
-        // Update Active Card in this section (and ensure others remain correct)
+        // Update Cards for this section
         const cards = sec.querySelectorAll('.card');
         cards.forEach((card, rIdx) => {
-            // Remove state classes safely
             card.classList.remove('active', 'prev', 'next');
-            
-            // Apply correct state based on current row index for this column
             if (rIdx === state.rows[idx]) card.classList.add('active');
             else if (rIdx < state.rows[idx]) card.classList.add('prev');
             else card.classList.add('next');
