@@ -3,78 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kevin Rushing | Swipe to Explore</title>
+    <title>Kevin Rushing | Senior Database Engineer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div id="background-canvas"></div>
     
-    <!-- UI Overlay -->
     <div class="ui-layer">
         <div class="top-bar">
-            <div class="logo">KR<span class="dot">.</span></div>
-            <div class="section-indicator" id="section-title">INTRO</div>
+            <div class="logo">KR</div>
+            <div class="section-indicator" id="section-title">PROFILE</div>
         </div>
 
-        <div class="tutorial-hint" id="tutorial">
-            <div class="hand-icon">👆</div>
-            <p>Swipe Up/Down for Cards<br>Left/Right for Sections</p>
-        </div>
-
-        <div class="nav-dots" id="nav-dots">
-            <!-- Populated by JS -->
-        </div>
+        <div class="nav-dots" id="nav-dots"></div>
     </div>
 
-    <!-- The Grid of Decks -->
     <div class="app-container" id="app">
         
-        <!-- SECTION 1: INTRO / ABOUT -->
+        <!-- SECTION 1: PROFILE -->
         <div class="section" data-title="PROFILE">
             
+            <!-- Card 1: Intro -->
             <div class="card intro-card">
                 <div class="card-inner">
                     <div class="profile-img">KR</div>
                     <h1>Kevin Rushing</h1>
-                    <p class="tagline">Data Engineer. Architect. Automator.</p>
-                    <div class="status-pill">
-                        <span class="dot-status"></span> Available for projects
+                    <p class="role-title">Senior Database Engineer</p>
+                    <p class="mission-statement">
+                        Architecting intelligent data ecosystems at <strong>NielsenIQ</strong>.
+                    </p>
+                    <div class="swipe-hint-minimal">
+                        <i class="fas fa-chevron-up"></i>
                     </div>
-                    <div class="swipe-hint">Swipe Up to Begin ⚡️</div>
                 </div>
             </div>
 
+            <!-- Card 2: Competencies -->
             <div class="card skill-card">
                 <div class="card-inner">
-                    <h2>The Arsenal</h2>
-                    <div class="skill-grid">
-                        <div class="skill-item"><i class="fas fa-snowflake"></i> Snowflake</div>
-                        <div class="skill-item"><i class="fab fa-python"></i> Python</div>
-                        <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
-                        <div class="skill-item"><i class="fas fa-cloud"></i> Azure</div>
-                        <div class="skill-item"><i class="fas fa-terminal"></i> PowerShell</div>
-                        <div class="skill-item"><i class="fas fa-robot"></i> Automation</div>
+                    <h2>Engineering Focus</h2>
+                    <div class="tech-list">
+                        <div class="tech-row">
+                            <span class="tech-label">Core Platform</span>
+                            <span class="tech-val">Snowflake / Snowpark</span>
+                        </div>
+                        <div class="tech-row">
+                            <span class="tech-label">Machine Learning</span>
+                            <span class="tech-val">Prophet / Predictive Imputation</span>
+                        </div>
+                        <div class="tech-row">
+                            <span class="tech-label">Orchestration</span>
+                            <span class="tech-val">Azure Data Factory / Python</span>
+                        </div>
+                        <div class="tech-row">
+                            <span class="tech-label">Architecture</span>
+                            <span class="tech-val">Multi-Source Unification</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Card 3: Impact -->
             <div class="card bio-card">
                 <div class="card-inner">
-                    <h2>About Me</h2>
-                    <p>I turn messy data into clean, actionable insights. With <strong>8+ years</strong> of experience, I build the invisible engines that power multimillion-dollar decisions.</p>
-                    <div class="mini-stats">
-                        <div>
-                            <strong>$10M+</strong>
-                            <span>Revenue Reporting</span>
+                    <h2>Scale & Strategy</h2>
+                    <p>
+                        I design the processes that turn fragmented data into cohesive stories.
+                        Currently bridging gaps in volatile datasets using ML to accelerate delivery timelines.
+                    </p>
+                    <div class="metric-grid">
+                        <div class="metric">
+                            <span class="metric-num">100M+</span>
+                            <span class="metric-lbl">Records Processed</span>
                         </div>
-                        <div>
-                            <strong>100%</strong>
-                            <span>Pipeline Auto</span>
+                        <div class="metric">
+                            <span class="metric-num">-7 Days</span>
+                            <span class="metric-lbl">Delivery Latency</span>
                         </div>
                     </div>
                 </div>
@@ -83,96 +91,87 @@
         </div>
 
         <!-- SECTION 2: EXPERIENCE -->
-        <div class="section" data-title="WORK">
+        <div class="section" data-title="EXPERIENCE">
             
-            <div class="card job-card niq">
+            <!-- NIQ -->
+            <div class="card job-card niq active-job">
                 <div class="card-header">
-                    <div class="company-logo">NIQ</div>
-                    <div class="dates">2018 - Present</div>
+                    <div class="company-name">NielsenIQ</div>
+                    <div class="job-dates">2018 — Present</div>
                 </div>
                 <div class="card-inner">
                     <h3>Senior Database Engineer</h3>
-                    <h4>NielsenIQ</h4>
-                    <ul class="job-points">
-                        <li>🚀 Lead architect for revenue reporting build team.</li>
-                        <li>❄️ Snowflake & Azure Data Factory expert.</li>
-                        <li>🐍 Automated everything with Python & Cron.</li>
-                        <li>📉 Reduced manual intervention to near zero.</li>
+                    <div class="job-focus">Focus: Architecture & ML Integration</div>
+                    <ul class="job-bullets">
+                        <li><strong>Predictive Imputation:</strong> Deployed Prophet models to forecast missing data in volatile sources, enabling delivery 1 week ahead of schedule.</li>
+                        <li><strong>System Design:</strong> Architected the unified ingestion process now adopted as the standard across the MMR organization.</li>
+                        <li><strong>High-Volume Pipeline:</strong> Orchestrating disparate data sources into a cohesive narrative, handling 100M+ records.</li>
+                        <li><strong>Automation:</strong> Eliminated manual intervention via robust Python/Snowflake pipelines.</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- UAMS -->
             <div class="card job-card uams">
                 <div class="card-header">
-                    <div class="company-logo">UAMS</div>
-                    <div class="dates">2016 - 2018</div>
+                    <div class="company-name">UAMS</div>
+                    <div class="job-dates">2016 — 2018</div>
                 </div>
                 <div class="card-inner">
                     <h3>Systems Programmer</h3>
-                    <h4>Univ. of Arkansas Med School</h4>
-                    <ul class="job-points">
-                        <li>🏥 Modernized donor databases.</li>
-                        <li>💻 Built custom Web UIs (HTML/JS).</li>
-                        <li>🔄 Automated daily ETL pipelines.</li>
-                        <li>✨ Maintained high data integrity.</li>
+                    <div class="job-focus">Focus: Data Integrity & Web Systems</div>
+                    <ul class="job-bullets">
+                        <li>Modernized donor database infrastructure to improve data reliability.</li>
+                        <li>Automated daily ETL pipelines, reducing processing time and errors.</li>
+                        <li>Developed custom web interfaces (HTML/JS) for internal data management.</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- UALR -->
             <div class="card job-card ualr">
                 <div class="card-header">
-                    <div class="company-logo">UALR</div>
-                    <div class="dates">2014 - 2016</div>
+                    <div class="company-name">UALR</div>
+                    <div class="job-dates">2014 — 2016</div>
                 </div>
                 <div class="card-inner">
                     <h3>System Specialist</h3>
-                    <h4>Univ. of Arkansas Little Rock</h4>
-                    <ul class="job-points">
-                        <li>🎓 Managed donor data & reporting.</li>
-                        <li>📊 Crystal Reports & SQL strategy.</li>
-                        <li>⏰ Maintained UNIX Cron schedules.</li>
+                    <div class="job-focus">Focus: Reporting Strategy</div>
+                    <ul class="job-bullets">
+                        <li>Managed donor data warehousing and reporting strategy.</li>
+                        <li>Designed automated SQL reporting workflows for stakeholders.</li>
                     </ul>
                 </div>
             </div>
 
         </div>
 
-        <!-- SECTION 3: EDUCATION & PERSONAL -->
-        <div class="section" data-title="MISC">
+        <!-- SECTION 3: CONNECT -->
+        <div class="section" data-title="CONNECT">
             
-            <div class="card edu-card">
-                <div class="card-inner">
-                    <i class="fas fa-graduation-cap big-icon"></i>
-                    <h2>Education</h2>
-                    <h3>BS, Computer Science</h3>
-                    <p class="school">University of Arkansas at Little Rock</p>
-                    <div class="badge">Summa Cum Laude</div>
-                    <p class="minor">Minors: Math & Digital Graphics</p>
-                </div>
-            </div>
-
             <div class="card personal-card">
                 <div class="card-inner">
-                    <h2>Offline Mode</h2>
-                    <div class="interests-stack">
-                        <div class="interest">🎮 Video Games</div>
-                        <div class="interest">🎙 Hosted Podcasts</div>
-                        <div class="interest">🏔 Hiking Colorado</div>
-                        <div class="interest">✈️ Traveling</div>
+                    <h2>Beyond the Code</h2>
+                    <p class="personal-text">
+                        When I'm not optimizing pipelines, I'm exploring the Colorado Rockies, 
+                        hosting podcasts, or traveling.
+                    </p>
+                    <div class="interests-minimal">
+                        <span>Hiking</span> • <span>Gaming</span> • <span>Travel</span>
                     </div>
                 </div>
             </div>
 
             <div class="card contact-card">
                 <div class="card-inner">
-                    <h2>Let's Build.</h2>
-                    <p>Ready to automate the impossible?</p>
-                    <div class="contact-links">
-                        <a href="mailto:kevin.c.rushing@gmail.com" class="btn-big email">
-                            <i class="fas fa-envelope"></i> Email Me
+                    <h2>Get in Touch</h2>
+                    <p>Open to discussing data architecture and engineering leadership.</p>
+                    <div class="action-buttons">
+                        <a href="mailto:kevin.c.rushing@gmail.com" class="action-btn primary">
+                            kevin.c.rushing@gmail.com
                         </a>
-                        <a href="https://github.com/kcrushing" class="btn-big github">
-                            <i class="fab fa-github"></i> GitHub
+                        <a href="https://github.com/kcrushing" class="action-btn secondary">
+                            github.com/kcrushing
                         </a>
                     </div>
                 </div>
