@@ -1,14 +1,22 @@
 :root {
-    /* NIQ-inspired Palette */
-    --bg-color: #0c1524;
+    /* NIQ Official Palette */
+    --bg-color: #0c1524; /* Deep Navy (kept for dark mode base) */
     --card-bg: rgba(255, 255, 255, 0.03);
     --card-border: rgba(255, 255, 255, 0.1);
     --text-primary: #ffffff;
     --text-secondary: #a0aab8;
-    --accent-primary: #2ae399; /* Green/Lime */
-    --accent-secondary: #00c4f5; /* Cyan */
-    --accent-hover: #1fc282;
-    --glow: radial-gradient(circle at 50% 0%, rgba(42, 227, 153, 0.15), transparent 70%);
+    
+    /* Nielsen Official Colors */
+    --niq-blue: #00aeff;
+    --niq-purple: #b21dac;
+    --niq-green: #8dc63f;
+    --niq-orange: #ffb100;
+    --niq-red: #dd0014;
+
+    --accent-primary: var(--niq-green); 
+    --accent-secondary: var(--niq-blue);
+    --accent-hover: var(--niq-purple); 
+    --glow: radial-gradient(circle at 50% 0%, rgba(0, 174, 255, 0.15), transparent 70%);
 }
 
 * {
