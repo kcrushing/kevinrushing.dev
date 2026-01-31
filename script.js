@@ -70,7 +70,6 @@ const state = {
 const sections = document.querySelectorAll('.section');
 const sectionTitle = document.getElementById('section-title');
 const navDotsContainer = document.getElementById('nav-dots');
-const tutorial = document.getElementById('tutorial');
 
 // Initialize
 sections.forEach((sec, colIndex) => {
@@ -114,11 +113,6 @@ function updateView() {
     // 2. Update Dots
     const dots = document.querySelectorAll('.nav-dot');
     dots.forEach((d, i) => d.classList.toggle('active', i === state.col));
-
-    // 3. Hide Tutorial after first move
-    if (state.col > 0 || state.rows[0] > 0) {
-        tutorial.style.opacity = '0';
-    }
 }
 
 // Touch Handling
