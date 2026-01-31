@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin Rushing | Developer</title>
+    <title>Kevin Rushing | Database Engineer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,41 +16,99 @@
         <header>
             <div class="logo">KR</div>
             <nav>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
                 <a href="https://github.com/kcrushing" target="_blank">GitHub</a>
-                <a href="mailto:hello@kevinrushing.dev">Contact</a>
+                <a href="mailto:kevin.c.rushing@gmail.com">Contact</a>
             </nav>
         </header>
         
         <main>
             <section class="hero">
-                <p class="eyebrow">Developer & Tech Enthusiast</p>
+                <p class="eyebrow">Senior Database Engineer</p>
                 <h1>Kevin Rushing</h1>
-                <p class="bio">Building the future, one line at a time. Specializing in modern web technologies and intelligent automation.</p>
+                <p class="bio">
+                    Building robust data ecosystems at <strong>NielsenIQ</strong>. Specializing in Snowflake architectures, 
+                    Python automation, and high-performance ETL pipelines. Based in Colorado Springs, CO.
+                </p>
                 
                 <div class="cta-group">
-                    <a href="https://github.com/kcrushing" class="btn btn-primary">View Projects</a>
-                    <a href="mailto:hello@kevinrushing.dev" class="btn btn-secondary">Get in Touch</a>
+                    <a href="mailto:kevin.c.rushing@gmail.com" class="btn btn-primary">Contact Me</a>
+                    <a href="https://github.com/kcrushing" class="btn btn-secondary">GitHub</a>
                 </div>
             </section>
 
-            <section class="features">
-                <div class="card">
-                    <h3>Development</h3>
-                    <p>Crafting robust and scalable applications with a focus on performance.</p>
+            <section id="skills" class="skills-section">
+                <h2>Technical Arsenal</h2>
+                <div class="pill-grid">
+                    <span class="pill">Snowflake</span>
+                    <span class="pill">SQL</span>
+                    <span class="pill">Python</span>
+                    <span class="pill">PowerShell</span>
+                    <span class="pill">Azure Data Factory</span>
+                    <span class="pill">GIT</span>
+                    <span class="pill">ETL Automation</span>
+                    <span class="pill">Team Management</span>
                 </div>
-                <div class="card">
-                    <h3>Automation</h3>
-                    <p>Streamlining workflows to save time and reduce friction.</p>
+            </section>
+
+            <section id="experience" class="timeline-section">
+                <h2>Experience</h2>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2018 – Present</div>
+                    <div class="timeline-content">
+                        <h3>NielsenIQ</h3>
+                        <h4>Database Engineer (Sr)</h4>
+                        <ul>
+                            <li>Lead the build team for a multimillion-dollar revenue reporting project.</li>
+                            <li>Develop advanced data pipelines using Snowflake, Python, and PowerShell.</li>
+                            <li>Orchestrate ETL via Azure Data Factory and on-premise solutions.</li>
+                            <li>Automate workflows using GIT, VisualCron, and Cron to reduce manual intervention.</li>
+                        </ul>
+                    </div>
                 </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 2016 – Jan 2018</div>
+                    <div class="timeline-content">
+                        <h3>University of Arkansas Medical School</h3>
+                        <h4>Development Systems Programmer</h4>
+                        <ul>
+                            <li>Maintained donor database systems and integrity.</li>
+                            <li>Automated daily ETL processes for the team.</li>
+                            <li>Enhanced user interfaces using HTML, SQL, JavaScript, and CSS.</li>
+                            <li>Generated automated reporting and dynamic donor communications.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Oct 2014 – Mar 2016</div>
+                    <div class="timeline-content">
+                        <h3>University of Arkansas at Little Rock</h3>
+                        <h4>System Specialist</h4>
+                        <ul>
+                            <li>Managed donor databases and internal SQL reporting strategies.</li>
+                            <li>Created automations for donor information imports and reporting.</li>
+                            <li>Maintained UNIX Cron schedules for critical processes.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="education-section">
+                <h2>Education</h2>
                 <div class="card">
-                    <h3>Intelligence</h3>
-                    <p>Leveraging AI to solve complex problems in creative ways.</p>
+                    <h3>University of Arkansas at Little Rock</h3>
+                    <p><strong>BS, Computer Science</strong> | Summa Cum Laude</p>
+                    <p class="sub-text">Minors: Mathematics & Digital Graphics</p>
                 </div>
             </section>
         </main>
         
         <footer>
-            <p>&copy; <script>document.write(new Date().getFullYear())</script> Kevin Rushing. All rights reserved.</p>
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Kevin Rushing. Built with <span style="color:var(--niq-red)">♥</span> in Colorado.</p>
         </footer>
     </div>
 </body>
