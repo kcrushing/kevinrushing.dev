@@ -3,113 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin Rushing | Database Engineer</title>
+    <title>Kevin Rushing | Data Engineer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background-glow"></div>
+    <canvas id="data-network"></canvas>
+    <div class="background-overlay"></div>
     
     <div class="container">
-        <header>
-            <div class="logo">KR</div>
+        <header class="fade-in-up">
+            <div class="logo">KR<span class="dot">.</span></div>
             <nav>
-                <a href="#experience">Experience</a>
-                <a href="#skills">Skills</a>
-                <a href="https://github.com/kcrushing" target="_blank">GitHub</a>
-                <a href="mailto:kevin.c.rushing@gmail.com">Contact</a>
+                <a href="#work">Work</a>
+                <a href="#skills">Tech</a>
+                <a href="https://github.com/kcrushing" target="_blank">Code</a>
+                <a href="mailto:kevin.c.rushing@gmail.com" class="btn-nav">Let's Talk</a>
             </nav>
         </header>
         
         <main>
-            <section class="hero">
-                <p class="eyebrow">Senior Database Engineer</p>
-                <h1>Kevin Rushing</h1>
-                <p class="bio">
-                    Building robust data ecosystems at <strong>NielsenIQ</strong>. Specializing in Snowflake architectures, 
-                    Python automation, and high-performance ETL pipelines. Based in Colorado Springs, CO.
-                </p>
+            <section class="hero fade-in-up">
+                <div class="hero-content">
+                    <p class="eyebrow">Data Engineer & Architect</p>
+                    <h1>
+                        Turning <span class="highlight-text">Chaos</span><br>
+                        Into <span class="highlight-text-alt">Clarity.</span>
+                    </h1>
+                    <p class="bio">
+                        I build the invisible engines that power multimillion-dollar decisions.
+                        Specializing in <strong>Snowflake</strong>, high-velocity <strong>ETL</strong>, and <strong>Python</strong> automation.
+                    </p>
+                    
+                    <div class="cta-group">
+                        <a href="#work" class="btn btn-primary">See the Pipelines</a>
+                        <a href="https://github.com/kcrushing" class="btn btn-secondary">View GitHub</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="stats" class="stats-bar fade-in-up">
+                <div class="stat-item">
+                    <span class="stat-number">8+</span>
+                    <span class="stat-label">Years Exp</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$10M+</span>
+                    <span class="stat-label">Revenue Reporting</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Automation</span>
+                </div>
+            </section>
+
+            <section id="skills" class="skills-section fade-in-up">
+                <h2>The Stack</h2>
+                <div class="skill-cloud">
+                    <!-- High Priority -->
+                    <div class="skill-tag primary">Snowflake</div>
+                    <div class="skill-tag primary">Python</div>
+                    <div class="skill-tag primary">SQL</div>
+                    
+                    <!-- Secondary -->
+                    <div class="skill-tag secondary">Azure Data Factory</div>
+                    <div class="skill-tag secondary">PowerShell</div>
+                    <div class="skill-tag secondary">VisualCron</div>
+                    
+                    <!-- Tertiary -->
+                    <div class="skill-tag">GIT</div>
+                    <div class="skill-tag">ETL</div>
+                    <div class="skill-tag">Team Leadership</div>
+                    <div class="skill-tag">Data Architecture</div>
+                </div>
+            </section>
+
+            <section id="work" class="experience-section">
+                <h2 class="fade-in-up">Select Missions</h2>
                 
-                <div class="cta-group">
-                    <a href="mailto:kevin.c.rushing@gmail.com" class="btn btn-primary">Contact Me</a>
-                    <a href="https://github.com/kcrushing" class="btn btn-secondary">GitHub</a>
-                </div>
-            </section>
-
-            <section id="skills" class="skills-section">
-                <h2>Technical Arsenal</h2>
-                <div class="pill-grid">
-                    <span class="pill">Snowflake</span>
-                    <span class="pill">SQL</span>
-                    <span class="pill">Python</span>
-                    <span class="pill">PowerShell</span>
-                    <span class="pill">Azure Data Factory</span>
-                    <span class="pill">GIT</span>
-                    <span class="pill">ETL Automation</span>
-                    <span class="pill">Team Management</span>
-                </div>
-            </section>
-
-            <section id="experience" class="timeline-section">
-                <h2>Experience</h2>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Jan 2018 – Present</div>
-                    <div class="timeline-content">
-                        <h3>NielsenIQ</h3>
-                        <h4>Database Engineer (Sr)</h4>
-                        <ul>
-                            <li>Lead the build team for a multimillion-dollar revenue reporting project.</li>
-                            <li>Develop advanced data pipelines using Snowflake, Python, and PowerShell.</li>
-                            <li>Orchestrate ETL via Azure Data Factory and on-premise solutions.</li>
-                            <li>Automate workflows using GIT, VisualCron, and Cron to reduce manual intervention.</li>
-                        </ul>
+                <div class="job-card fade-in-up">
+                    <div class="job-header">
+                        <div class="job-role">
+                            <h3>NielsenIQ</h3>
+                            <span class="role-badge">Senior Database Engineer</span>
+                        </div>
+                        <span class="job-date">2018 — Present</span>
+                    </div>
+                    <p class="job-summary">
+                        Lead architect for the revenue reporting build team. I design the pipelines that ingest, process, and serve critical retail data.
+                    </p>
+                    <div class="job-highlights">
+                        <span>Snowflake</span>
+                        <span>Azure</span>
+                        <span>Python Automation</span>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-date">Apr 2016 – Jan 2018</div>
-                    <div class="timeline-content">
-                        <h3>University of Arkansas Medical School</h3>
-                        <h4>Development Systems Programmer</h4>
-                        <ul>
-                            <li>Maintained donor database systems and integrity.</li>
-                            <li>Automated daily ETL processes for the team.</li>
-                            <li>Enhanced user interfaces using HTML, SQL, JavaScript, and CSS.</li>
-                            <li>Generated automated reporting and dynamic donor communications.</li>
-                        </ul>
+                <div class="job-card fade-in-up">
+                    <div class="job-header">
+                        <div class="job-role">
+                            <h3>UAMS</h3>
+                            <span class="role-badge">Systems Programmer</span>
+                        </div>
+                        <span class="job-date">2016 — 2018</span>
+                    </div>
+                    <p class="job-summary">
+                        Modernized donor database systems. Built dynamic web interfaces (HTML/JS) and automated daily ETL processes to ensure data integrity.
+                    </p>
+                    <div class="job-highlights">
+                        <span>SQL</span>
+                        <span>Web Dev</span>
+                        <span>Automation</span>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-date">Oct 2014 – Mar 2016</div>
-                    <div class="timeline-content">
-                        <h3>University of Arkansas at Little Rock</h3>
-                        <h4>System Specialist</h4>
-                        <ul>
-                            <li>Managed donor databases and internal SQL reporting strategies.</li>
-                            <li>Created automations for donor information imports and reporting.</li>
-                            <li>Maintained UNIX Cron schedules for critical processes.</li>
-                        </ul>
+                <div class="job-card fade-in-up">
+                    <div class="job-header">
+                        <div class="job-role">
+                            <h3>UALR</h3>
+                            <span class="role-badge">System Specialist</span>
+                        </div>
+                        <span class="job-date">2014 — 2016</span>
+                    </div>
+                    <p class="job-summary">
+                        Managed donor data and internal SQL reporting strategy using Crystal Reports and UNIX cron scheduling.
+                    </p>
+                    <div class="job-highlights">
+                        <span>UNIX</span>
+                        <span>SQL Reporting</span>
                     </div>
                 </div>
             </section>
 
-            <section class="education-section">
-                <h2>Education</h2>
-                <div class="card">
-                    <h3>University of Arkansas at Little Rock</h3>
-                    <p><strong>BS, Computer Science</strong> | Summa Cum Laude</p>
-                    <p class="sub-text">Minors: Mathematics & Digital Graphics</p>
+            <section class="interests-section fade-in-up">
+                <h2>Offline Mode</h2>
+                <div class="interests-grid">
+                    <div class="interest-card">🎮 Video Games</div>
+                    <div class="interest-card">🎙 Podcasts</div>
+                    <div class="interest-card">🏔 Hiking</div>
+                    <div class="interest-card">✈️ Travel</div>
                 </div>
             </section>
         </main>
         
         <footer>
-            <p>&copy; <script>document.write(new Date().getFullYear())</script> Kevin Rushing. Built with <span style="color:var(--niq-red)">♥</span> in Colorado.</p>
+            <div class="footer-content fade-in-up">
+                <div class="footer-logo">KR.</div>
+                <p>Designed & Built by Kevin Rushing</p>
+                <div class="socials">
+                    <a href="mailto:kevin.c.rushing@gmail.com">Email</a>
+                    <a href="https://github.com/kcrushing">GitHub</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
         </footer>
     </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
