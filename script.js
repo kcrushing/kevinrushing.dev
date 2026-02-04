@@ -200,8 +200,11 @@ updateView();
 
 // --- BLASTER GAME MODE ---
 
-document.getElementById('start-game-btn').addEventListener('click', initGame);
-document.getElementById('exit-game-btn').addEventListener('click', exitGame);
+const startBtn = document.getElementById('start-game-btn');
+const exitBtn = document.getElementById('exit-game-btn');
+
+if (startBtn) startBtn.addEventListener('click', initGame);
+if (exitBtn) exitBtn.addEventListener('click', exitGame);
 
 let gameActive = false;
 let scene, camera, renderer;
@@ -210,9 +213,11 @@ let particles = [];
 let explosions = [];
 let score = 0;
 let animationId;
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
-const clock = new THREE.Clock();
+
+// Defer THREE instantiation until needed or safe
+let raycaster;
+let mouse;
+let clock;
 
 // Game Data
 const gameData = [
@@ -229,6 +234,16 @@ const gameData = [
 ];
 
 function initGame() {
+    if (typeof THREE === 'undefined') {
+        alert("Game engine (Three.js) failed to load. Please disable ad-blockers or try a different browser.");
+        return;
+    }
+
+    // Initialize globals now that we know THREE exists
+    if (!raycaster) raycaster = new THREE.Raycaster();
+    if (!mouse) mouse = new THREE.Vector2();
+    if (!clock) clock = new THREE.Clock();
+
     gameActive = true;
     document.body.classList.add('game-active');
     document.getElementById('game-ui').style.display = 'block';
@@ -297,7 +312,14 @@ function createTextTexture(text, color) {
     // Card Background
     ctx.fillStyle = 'rgba(20, 30, 45, 0.9)';
     ctx.beginPath();
-    ctx.roundRect(10, 10, 492, 236, 20);
+    
+    // RoundRect fallback for older browsers
+    if (ctx.roundRect) {
+        ctx.roundRect(10, 10, 492, 236, 20);
+    } else {
+        ctx.rect(10, 10, 492, 236);
+    }
+    
     ctx.fill();
     
     // Border
