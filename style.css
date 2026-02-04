@@ -353,9 +353,73 @@ body {
     font-size: 0.9rem;
 }
 
-@media (min-width: 768px) {
-    .card {
-        height: 70vh;
-        max-width: 450px;
-    }
+
+/* Game UI */
+#game-ui {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2000;
+    pointer-events: none; /* Let clicks pass through to canvas (except buttons) */
+    font-family: 'Inter', sans-serif;
+}
+
+#crosshair {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #00ff00;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 2001;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+#crosshair::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 4px; height: 4px;
+    background: #00ff00;
+    transform: translate(-50%, -50%);
+}
+
+#score {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #00ff00;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+#exit-game-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 0, 0, 0.2);
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    padding: 10px 20px;
+    cursor: pointer;
+    pointer-events: auto;
+    font-family: inherit;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#exit-game-btn:hover {
+    background: rgba(255, 0, 0, 0.4);
+}
+
+/* Hide cursor when game is active */
+body.game-active {
+    cursor: none;
+}
+
+body.game-active .ui-layer,
+body.game-active .app-container,
+body.game-active #background-canvas {
+    display: none !important;
 }
