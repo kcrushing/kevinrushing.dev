@@ -90,6 +90,13 @@ sections.forEach((sec, colIndex) => {
     const dot = document.createElement('div');
     dot.classList.add('nav-dot');
     if (colIndex === 0) dot.classList.add('active');
+    
+    // Make clickable
+    dot.addEventListener('click', () => {
+        state.col = colIndex;
+        updateView();
+    });
+    
     navDotsContainer.appendChild(dot);
 });
 
@@ -156,6 +163,30 @@ document.addEventListener('keydown', e => {
     if (e.key === 'ArrowDown') moveVertical(1);
     if (e.key === 'ArrowUp') moveVertical(-1);
 });
+
+// Wheel / Scroll Navigation
+let lastWheelTime = 0;
+const wheelCooldown = 800; // ms
+
+document.addEventListener('wheel', e => {
+    const now = Date.now();
+    if (now - lastWheelTime < wheelCooldown) return;
+    
+    // Determine primary axis
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        // Horizontal
+        if (Math.abs(e.deltaX) > 10) {
+            moveHorizontal(e.deltaX > 0 ? 1 : -1);
+            lastWheelTime = now;
+        }
+    } else {
+        // Vertical
+        if (Math.abs(e.deltaY) > 10) {
+            moveVertical(e.deltaY > 0 ? 1 : -1);
+            lastWheelTime = now;
+        }
+    }
+}, {passive: true});
 
 function handleSwipe(x1, y1, x2, y2) {
     const dx = x2 - x1;

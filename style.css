@@ -24,6 +24,7 @@ body {
     color: var(--text-main);
     overflow: hidden;
     height: 100vh;
+    height: 100dvh;
     width: 100vw;
 }
 
@@ -78,6 +79,7 @@ body {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.15);
     transition: all 0.3s;
+    cursor: pointer;
 }
 
 .nav-dot.active {
