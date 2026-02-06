@@ -16,32 +16,63 @@
     padding: 0;
 }
 
+/* Ensure images and media don't overflow */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+html {
+    overflow-x: hidden;
+    overflow-y: auto; /* Ensure scrolling is enabled */
+    height: 100%; /* Ensure proper height */
+    /* Prevent text size adjustment on orientation change */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 body {
     background-color: var(--bg);
     color: var(--text);
     font-family: var(--font-ui);
-    height: 100vh;
+    min-height: 100vh;
+    /* Use CSS custom property for mobile viewport height */
+    min-height: calc(var(--vh, 1vh) * 100);
+    width: 100%;
     overflow-x: hidden;
-    background-image: 
+    overflow-y: auto; /* Ensure vertical scrolling works */
+    position: relative;
+    background-image:
         linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
+    /* Improve font rendering on mobile */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Enable momentum scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
 }
 
 /* CRT Effect */
 .scan-line {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 10px;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 10px;
     background: rgba(0, 243, 255, 0.1);
     opacity: 0.4;
     animation: scan 6s linear infinite;
     pointer-events: none;
     z-index: 999;
+    will-change: top; /* GPU acceleration */
 }
 
 .overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
     background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.8) 100%);
     pointer-events: none;
     z-index: 998;
@@ -55,11 +86,13 @@ body {
 /* Layout */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     padding: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .module {
@@ -71,6 +104,8 @@ body {
     backdrop-filter: blur(10px);
     transition: transform 0.2s, border-color 0.2s;
     overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .module:hover {
@@ -131,6 +166,7 @@ body {
     position: relative;
     width: 100px;
     height: 100px;
+    flex-shrink: 0;
 }
 
 .avatar {
@@ -155,6 +191,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 0.2rem;
+    line-height: 1.1;
 }
 
 .role {
@@ -164,7 +201,13 @@ body {
     margin-bottom: 1rem;
 }
 
-.mission { font-size: 1.1rem; max-width: 600px; line-height: 1.5; }
+.mission {
+    font-size: 1.1rem;
+    max-width: 600px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
 .highlight { color: #fff; font-weight: bold; }
 
 .tags {
@@ -201,12 +244,20 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     text-align: center;
+    width: 100%;
+}
+
+.stat-item {
+    min-width: 0; /* Allow items to shrink */
+    overflow: hidden;
 }
 
 .stat-value {
     font-size: 2.5rem;
     font-weight: 700;
     color: #fff;
+    line-height: 1;
+    word-break: break-word;
 }
 
 .stat-value.accent { color: var(--accent); }
@@ -215,6 +266,8 @@ body {
     font-size: 0.8rem;
     color: var(--text-muted);
     margin-top: 0.5rem;
+    word-break: break-word;
+    hyphens: auto;
 }
 
 /* Skills */
@@ -225,22 +278,37 @@ body {
     font-size: 0.9rem;
     margin-bottom: 0.3rem;
     font-family: var(--font-code);
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.skill-info span:first-child {
+    flex: 1;
+    min-width: 0; /* Allow text to shrink */
+    word-break: break-word;
 }
 .bar-bg {
     width: 100%;
+    max-width: 100%;
     height: 6px;
     background: rgba(255,255,255,0.1);
+    overflow: hidden;
 }
 .bar-fill {
     height: 100%;
     background: var(--accent);
     box-shadow: 0 0 10px var(--accent);
     width: 0; /* JS will animate */
+    max-width: 100%;
     transition: width 1.5s cubic-bezier(0.2, 1, 0.2, 1);
 }
 
 /* Experience */
-.exp-module { grid-row: span 2; }
+.exp-module { 
+    grid-row: span 2; 
+    display: flex;
+    flex-direction: column;
+}
 
 .timeline-item {
     padding-left: 1rem;
@@ -267,11 +335,25 @@ body {
     margin-bottom: 0.25rem;
     font-family: var(--font-code);
     font-size: 0.9rem;
+    flex-wrap: wrap; /* Allow wrapping on very small screens */
+    gap: 0.5rem;
 }
 
-.company { font-weight: bold; color: #fff; }
-.year { color: var(--text-muted); }
-.role-detail { color: var(--accent); font-size: 0.9rem; margin-bottom: 0.5rem; }
+.company {
+    font-weight: bold;
+    color: #fff;
+    word-break: break-word;
+}
+.year {
+    color: var(--text-muted);
+    white-space: nowrap; /* Keep dates on one line */
+}
+.role-detail {
+    color: var(--accent);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+}
 
 .bullets {
     list-style: none;
@@ -286,11 +368,16 @@ body {
     display: flex;
     justify-content: space-around;
     margin-top: 1.5rem;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 .icon-box {
     text-align: center;
     color: var(--text-muted);
     transition: color 0.3s;
+    flex: 1 1 auto;
+    min-width: 60px;
 }
 .icon-box:hover { color: var(--accent); }
 .icon-box i { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
@@ -336,11 +423,406 @@ body {
     color: #fff;
 }
 
-/* Mobile Tweaks */
+/* =========================================
+   MOBILE OPTIMIZATIONS
+   ========================================= */
+
+/* Tablet and Below (768px) */
 @media (max-width: 768px) {
-    .header-text h1 { font-size: 1.8rem; }
-    .profile-flex { justify-content: center; text-align: center; }
-    .mission { margin: 0 auto; }
-    .tags { justify-content: center; }
-    .timeline-item { padding-bottom: 1.5rem; }
+    html, body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        background-size: 30px 30px; /* Smaller grid on mobile */
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+    }
+
+    .grid-container {
+        padding: 1rem;
+        gap: 1rem;
+        grid-template-columns: 1fr; /* Single column layout */
+        display: block; /* Use block for better scrolling behavior on some mobile browsers */
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .module {
+        margin-bottom: 1rem;
+    }
+
+    /* Reduce corner accents size */
+    .module::before,
+    .module::after {
+        width: 15px;
+        height: 15px;
+    }
+
+    /* Header adjustments */
+    .header-text h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+
+    .profile-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .header-text {
+        width: 100%;
+    }
+
+    .mission {
+        margin: 0 auto;
+        font-size: 1rem;
+    }
+
+    .tags {
+        justify-content: center;
+    }
+
+    /* Stats module - reduce size but keep 3 columns */
+    .stat-value {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    /* Skills - ensure bars fit nicely */
+    .skill-info {
+        font-size: 0.85rem;
+    }
+
+    /* Experience timeline */
+    .exp-module {
+        grid-row: auto; /* Remove row span on mobile */
+    }
+
+    .timeline-item {
+        padding-bottom: 1.5rem;
+        padding-left: 0.75rem;
+    }
+
+    /* Personal icons */
+    .icon-row {
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .icon-box {
+        flex: 1;
+        min-width: 80px;
+    }
+
+    /* Links - ensure good touch targets */
+    .btn {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+}
+
+/* Large Mobile (481px - 640px) */
+@media (max-width: 640px) {
+    .header-text h1 {
+        font-size: 1.75rem;
+    }
+
+    .role {
+        font-size: 0.95rem;
+    }
+
+    .mission {
+        font-size: 0.95rem;
+    }
+
+    .stat-grid {
+        gap: 0.75rem;
+    }
+}
+
+/* Small Mobile (480px and below) */
+@media (max-width: 480px) {
+    .grid-container {
+        padding: 0.75rem;
+        gap: 0.75rem;
+        display: block;
+    }
+
+    .module {
+        padding: 1rem;
+        max-width: 100%;
+    }
+
+    /* Further reduce header size */
+    .header-text h1 {
+        font-size: 1.5rem;
+        letter-spacing: 0.5px;
+    }
+
+    .role {
+        font-size: 0.85rem;
+    }
+
+    .mission {
+        font-size: 0.9rem;
+    }
+
+    /* Reduce avatar size */
+    .avatar-container {
+        width: 80px;
+        height: 80px;
+    }
+
+    .ring {
+        top: -4px;
+        left: -4px;
+        right: -4px;
+        bottom: -4px;
+    }
+
+    /* Status bar adjustments */
+    .status-bar {
+        font-size: 0.7rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    /* Tags - smaller on mobile */
+    .tag {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    /* Stats - consider stacking or reducing further */
+    .stat-grid {
+        gap: 0.5rem;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-item {
+        min-width: 0; /* Allow flex items to shrink */
+    }
+
+    .stat-value {
+        font-size: 1.8rem;
+        word-break: break-word;
+    }
+
+    .stat-label {
+        font-size: 0.65rem;
+        line-height: 1.2;
+        word-break: break-word;
+    }
+
+    /* Module titles */
+    .module-title {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Skills bars */
+    .skill-info {
+        font-size: 0.75rem;
+    }
+
+    .skill-bar {
+        margin-bottom: 0.75rem;
+    }
+
+    .bar-bg {
+        height: 5px;
+    }
+
+    /* Experience timeline - more compact */
+    .timeline-item {
+        padding-left: 0.6rem;
+        padding-bottom: 1.25rem;
+    }
+
+    .timeline-item::before {
+        width: 8px;
+        height: 8px;
+        left: -5px;
+    }
+
+    .time-header {
+        font-size: 0.8rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .role-detail {
+        font-size: 0.85rem;
+    }
+
+    .bullets {
+        font-size: 0.85rem;
+    }
+
+    .bullets li {
+        margin-bottom: 0.4rem;
+    }
+
+    /* Personal module */
+    .personal-module p {
+        font-size: 0.9rem;
+    }
+
+    .icon-box i {
+        font-size: 1.3rem;
+    }
+
+    .icon-box span {
+        font-size: 0.65rem;
+    }
+
+    /* Buttons - maintain touch target size */
+    .btn {
+        padding: 0.9rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra Small Mobile (360px and below) */
+@media (max-width: 360px) {
+    .grid-container {
+        padding: 0.5rem;
+        gap: 0.5rem;
+        display: block;
+        width: 100%;
+    }
+
+    .module {
+        padding: 0.85rem;
+        max-width: 100%;
+    }
+
+    .header-text h1 {
+        font-size: 1.3rem;
+    }
+
+    .role {
+        font-size: 0.8rem;
+    }
+
+    .mission {
+        font-size: 0.85rem;
+    }
+
+    .avatar-container {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* Stats - stack if too cramped */
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.6rem;
+    }
+
+    /* Reduce all spacing */
+    .module-title {
+        font-size: 0.8rem;
+        margin-bottom: 0.85rem;
+    }
+
+    .skill-info {
+        font-size: 0.7rem;
+    }
+
+    .bar-bg {
+        height: 4px;
+    }
+}
+
+/* Landscape Mobile (height-based) */
+@media (max-height: 500px) and (orientation: landscape) {
+    .grid-container {
+        padding: 0.75rem;
+    }
+
+    .module {
+        padding: 1rem;
+    }
+
+    .header-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .avatar-container {
+        width: 70px;
+        height: 70px;
+    }
+
+    .profile-flex {
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .header-text {
+        text-align: left;
+    }
+
+    .tags {
+        justify-content: flex-start;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Ensure scrolling works properly on touch devices */
+    html, body {
+        height: 100%;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Increase touch targets */
+    .btn {
+        min-height: 44px; /* iOS recommended touch target */
+    }
+
+    /* Remove hover effects that don't work on touch */
+    .module:hover {
+        transform: none;
+    }
+
+    .icon-box:hover {
+        color: var(--text-muted);
+    }
+
+    /* Ensure tap highlights are visible */
+    .btn,
+    .icon-box,
+    a {
+        -webkit-tap-highlight-color: rgba(0, 243, 255, 0.2);
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .scan-line,
+    .ring {
+        animation: none;
+    }
 }
