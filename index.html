@@ -2,197 +2,160 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kevin Rushing | Senior Database Engineer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin Rushing | Data Architect</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </head>
 <body>
-    <canvas id="background-canvas"></canvas>
-    
-    <!-- Game UI Layer (Hidden by default) -->
-    <div id="game-ui" style="display: none;">
-        <div id="crosshair"></div>
-        <div id="score">SCORE: 0</div>
-        <button id="exit-game-btn">EXIT MISSION</button>
-    </div>
 
-    <div class="ui-layer">
-        <div class="top-bar">
-            <div class="logo">KR</div>
-            <div class="section-indicator" id="section-title">PROFILE</div>
+    <div class="scan-line"></div>
+    <div class="overlay"></div>
+
+    <main class="grid-container">
+        <!-- HEADER MODULE -->
+        <div class="module header-module">
+            <div class="status-bar">
+                <span class="blink">● SYSTEM ONLINE</span>
+                <span id="clock">00:00:00</span>
+            </div>
+            <div class="profile-flex">
+                <div class="avatar-container">
+                    <img src="https://github.com/kcrushing.png" alt="KR" class="avatar">
+                    <div class="ring"></div>
+                </div>
+                <div class="header-text">
+                    <h1>KEVIN RUSHING</h1>
+                    <h2 class="role">SENIOR DATABASE ENGINEER</h2>
+                    <p class="mission">Architecting intelligent data ecosystems at <span class="highlight">NielsenIQ</span>.</p>
+                </div>
+            </div>
+            <div class="tags">
+                <span class="tag">SNOWFLAKE</span>
+                <span class="tag">PYTHON</span>
+                <span class="tag">ML</span>
+                <span class="tag">ARCHITECT</span>
+            </div>
         </div>
 
-        <div class="nav-dots" id="nav-dots"></div>
-    </div>
+        <!-- STATS MODULE -->
+        <div class="module stats-module">
+            <h3 class="module-title"><i class="fas fa-chart-line"></i> PERFORMANCE METRICS</h3>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <div class="stat-value counter" data-target="100">0</div>
+                    <div class="stat-label">MILLION RECORDS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value accent">-7</div>
+                    <div class="stat-label">DAYS LATENCY</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">10+</div>
+                    <div class="stat-label">YEARS EXP</div>
+                </div>
+            </div>
+        </div>
 
-    <div class="app-container" id="app">
-        
-        <!-- SECTION 1: PROFILE -->
-        <div class="section active" data-title="PROFILE">
+        <!-- SKILLS MODULE -->
+        <div class="module skills-module">
+            <h3 class="module-title"><i class="fas fa-microchip"></i> CORE SYSTEMS</h3>
+            <div class="skill-bar">
+                <div class="skill-info">
+                    <span>SNOWFLAKE / SNOWPARK</span>
+                    <span>100%</span>
+                </div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 100%"></div></div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-info">
+                    <span>PREDICTIVE ML (PROPHET)</span>
+                    <span>90%</span>
+                </div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 90%"></div></div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-info">
+                    <span>AZURE DATA FACTORY</span>
+                    <span>85%</span>
+                </div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 85%"></div></div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-info">
+                    <span>MULTI-SOURCE UNIFICATION</span>
+                    <span>95%</span>
+                </div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 95%"></div></div>
+            </div>
+        </div>
+
+        <!-- EXPERIENCE MODULE -->
+        <div class="module exp-module">
+            <h3 class="module-title"><i class="fas fa-history"></i> MISSION LOG</h3>
             
-            <!-- Card 1: Intro -->
-            <div class="card intro-card active">
-                <div class="card-inner">
-                    <div class="profile-img">KR</div>
-                    <h1>Kevin Rushing</h1>
-                    <p class="role-title">Senior Database Engineer</p>
-                    <p class="mission-statement">
-                        Architecting intelligent data ecosystems at <strong>NielsenIQ</strong>.
-                    </p>
-                    <div class="swipe-hint-minimal">
-                        <i class="fas fa-chevron-up"></i>
-                    </div>
+            <div class="timeline-item active">
+                <div class="time-header">
+                    <span class="company">NielsenIQ</span>
+                    <span class="year">2018 - PRES</span>
                 </div>
+                <div class="role-detail">Senior Database Engineer</div>
+                <ul class="bullets">
+                    <li>Deployed Prophet models to forecast missing data.</li>
+                    <li>Architected unified ingestion for MMR org.</li>
+                    <li>Automated pipelines handling 100M+ records.</li>
+                </ul>
             </div>
 
-            <!-- Card 2: Competencies -->
-            <div class="card skill-card">
-                <div class="card-inner">
-                    <h2>Engineering Focus</h2>
-                    <div class="tech-list">
-                        <div class="tech-row">
-                            <span class="tech-label">Core Platform</span>
-                            <span class="tech-val">Snowflake / Snowpark</span>
-                        </div>
-                        <div class="tech-row">
-                            <span class="tech-label">Machine Learning</span>
-                            <span class="tech-val">Prophet / Predictive Imputation</span>
-                        </div>
-                        <div class="tech-row">
-                            <span class="tech-label">Orchestration</span>
-                            <span class="tech-val">Azure Data Factory / Python</span>
-                        </div>
-                        <div class="tech-row">
-                            <span class="tech-label">Architecture</span>
-                            <span class="tech-val">Multi-Source Unification</span>
-                        </div>
-                    </div>
+            <div class="timeline-item">
+                <div class="time-header">
+                    <span class="company">UAMS</span>
+                    <span class="year">2016 - 2018</span>
                 </div>
+                <div class="role-detail">Systems Programmer</div>
+                <ul class="bullets">
+                    <li>Modernized donor database infrastructure.</li>
+                    <li>Automated daily ETL pipelines.</li>
+                </ul>
             </div>
 
-            <!-- Card 3: Impact -->
-            <div class="card bio-card">
-                <div class="card-inner">
-                    <h2>Scale & Strategy</h2>
-                    <p>
-                        I design the processes that turn fragmented data into cohesive stories.
-                        Currently bridging gaps in volatile datasets using ML to accelerate delivery timelines.
-                    </p>
-                    <div class="metric-grid">
-                        <div class="metric">
-                            <span class="metric-num">100M+</span>
-                            <span class="metric-lbl">Records Processed</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-num">-7 Days</span>
-                            <span class="metric-lbl">Delivery Latency</span>
-                        </div>
-                    </div>
+            <div class="timeline-item">
+                <div class="time-header">
+                    <span class="company">UALR</span>
+                    <span class="year">2014 - 2016</span>
                 </div>
+                <div class="role-detail">System Specialist</div>
             </div>
-
         </div>
 
-        <!-- SECTION 2: EXPERIENCE -->
-        <div class="section" data-title="EXPERIENCE">
-            
-            <!-- NIQ -->
-            <div class="card job-card niq active-job">
-                <div class="card-header">
-                    <div class="company-name">NielsenIQ</div>
-                    <div class="job-dates">2018 — Present</div>
-                </div>
-                <div class="card-inner">
-                    <h3>Senior Database Engineer</h3>
-                    <div class="job-focus">Focus: Architecture & ML Integration</div>
-                    <ul class="job-bullets">
-                        <li><strong>Predictive Imputation:</strong> Deployed Prophet models to forecast missing data in volatile sources, enabling delivery 1 week ahead of schedule.</li>
-                        <li><strong>System Design:</strong> Architected the unified ingestion process now adopted as the standard across the MMR organization.</li>
-                        <li><strong>High-Volume Pipeline:</strong> Orchestrating disparate data sources into a cohesive narrative, handling 100M+ records.</li>
-                        <li><strong>Automation:</strong> Eliminated manual intervention via robust Python/Snowflake pipelines.</li>
-                    </ul>
-                </div>
+        <!-- PERSONAL MODULE -->
+        <div class="module personal-module">
+            <h3 class="module-title"><i class="fas fa-fingerprint"></i> BIO-DATA</h3>
+            <p>Off-grid activities detected:</p>
+            <div class="icon-row">
+                <div class="icon-box"><i class="fas fa-mountain"></i> <span>HIKING</span></div>
+                <div class="icon-box"><i class="fas fa-gamepad"></i> <span>GAMING</span></div>
+                <div class="icon-box"><i class="fas fa-plane"></i> <span>TRAVEL</span></div>
             </div>
-
-            <!-- UAMS -->
-            <div class="card job-card uams">
-                <div class="card-header">
-                    <div class="company-name">UAMS</div>
-                    <div class="job-dates">2016 — 2018</div>
-                </div>
-                <div class="card-inner">
-                    <h3>Systems Programmer</h3>
-                    <div class="job-focus">Focus: Data Integrity & Web Systems</div>
-                    <ul class="job-bullets">
-                        <li>Modernized donor database infrastructure to improve data reliability.</li>
-                        <li>Automated daily ETL pipelines, reducing processing time and errors.</li>
-                        <li>Developed custom web interfaces (HTML/JS) for internal data management.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- UALR -->
-            <div class="card job-card ualr">
-                <div class="card-header">
-                    <div class="company-name">UALR</div>
-                    <div class="job-dates">2014 — 2016</div>
-                </div>
-                <div class="card-inner">
-                    <h3>System Specialist</h3>
-                    <div class="job-focus">Focus: Reporting Strategy</div>
-                    <ul class="job-bullets">
-                        <li>Managed donor data warehousing and reporting strategy.</li>
-                        <li>Designed automated SQL reporting workflows for stakeholders.</li>
-                    </ul>
-                </div>
-            </div>
-
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">
+                Base of Operations: Colorado Rockies
+            </p>
         </div>
 
-        <!-- SECTION 3: CONNECT -->
-        <div class="section" data-title="CONNECT">
-            
-            <div class="card personal-card">
-                <div class="card-inner">
-                    <h2>Beyond the Code</h2>
-                    <p class="personal-text">
-                        When I'm not optimizing pipelines, I'm exploring the Colorado Rockies, 
-                        hosting podcasts, or traveling.
-                    </p>
-                    <div class="interests-minimal">
-                        <span>Hiking</span> • <span>Gaming</span> • <span>Travel</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card contact-card">
-                <div class="card-inner">
-                    <h2>Get in Touch</h2>
-                    <p>Open to discussing data architecture and engineering leadership.</p>
-                    <div class="action-buttons">
-                        <a href="mailto:kevin.c.rushing@gmail.com" class="action-btn primary">
-                            kevin.c.rushing@gmail.com
-                        </a>
-                        <a href="https://github.com/kcrushing" class="action-btn secondary">
-                            github.com/kcrushing
-                        </a>
-                    </div>
-                    
-                    <button id="start-game-btn" class="action-btn game-trigger" style="margin-top: 1rem; width: 100%; border: 1px dashed var(--niq-green); background: rgba(0,0,0,0.3); color: var(--niq-green); cursor: pointer;">
-                        <i class="fas fa-gamepad"></i> INITIALIZE BLASTER MODE
-                    </button>
-                </div>
-            </div>
-
+        <!-- LINKS MODULE -->
+        <div class="module links-module">
+            <h3 class="module-title"><i class="fas fa-link"></i> UPLINK</h3>
+            <a href="mailto:kevin.c.rushing@gmail.com" class="btn primary">
+                <i class="fas fa-envelope"></i> EMAIL
+            </a>
+            <a href="https://github.com/kcrushing" class="btn secondary">
+                <i class="fab fa-github"></i> GITHUB
+            </a>
         </div>
 
-    </div>
+    </main>
 
-    <script src="script.js?v=6"></script>
+    <script src="script.js"></script>
 </body>
 </html>
