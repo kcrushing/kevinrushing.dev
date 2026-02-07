@@ -23,18 +23,18 @@ setTimeout(() => {
 const counters = document.querySelectorAll('.counter');
 counters.forEach(counter => {
     const target = +counter.getAttribute('data-target');
+    const suffix = counter.getAttribute('data-suffix') || '';
     const duration = 2000; // ms
     const increment = target / (duration / 16); // 60fps
-    
+
     let current = 0;
     const updateCounter = () => {
         current += increment;
         if (current < target) {
-            counter.innerText = Math.ceil(current) + (target > 1000 ? 'K' : 'M+'); // Custom suffix logic
-            if (target === 100) counter.innerText = Math.ceil(current) + 'M+';
+            counter.innerText = Math.ceil(current) + suffix;
             requestAnimationFrame(updateCounter);
         } else {
-            counter.innerText = target + 'M+';
+            counter.innerText = target + suffix;
         }
     };
     updateCounter();
